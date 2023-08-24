@@ -42,8 +42,7 @@ router.post('/register', async (req, res) => {
 
 router.post('/login' , async (req , res)=>{
     const user = await User.findOne({email : req.body.email})
-
-    if(!user){
+   if(!user){
         return res.send({
             success : false,
             message : 'User does not exist'
@@ -59,9 +58,7 @@ router.post('/login' , async (req , res)=>{
             message : 'Invalid Password'
         })
     }
-
-
-    res.send({
+   res.send({
         success : true,
         message : 'User Logged in'
     })

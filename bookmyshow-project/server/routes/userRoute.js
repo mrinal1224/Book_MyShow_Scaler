@@ -40,6 +40,38 @@ router.post('/register', async (req, res) => {
 
 //login Routes
 
+router.post('/login' , async (req , res)=>{
+    const user = await User.findOne({email : req.body.email})
+
+    if(!user){
+        return res.send({
+            success : false,
+            message : 'User does not exist'
+        })
+    }
+
+
+    const validPassword = await bcrypt.compare(req.body.password , user.password)
+     
+    if(!validPassword){
+        return res.send({
+            success : false,
+            message : 'Invalid Password'
+        })
+    }
+
+
+    res.send({
+        success : true,
+        message : 'User Logged in'
+    })
+})
+
+
+
+
+
+
 
 
 

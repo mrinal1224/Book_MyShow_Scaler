@@ -2,6 +2,9 @@ const router = require('express').Router()
 const bcrypt = require('bcryptjs')
 const User = require('../models/userModel')
 
+const jwt = require('jsonwebtoken')
+const authMiddleware = require('../middlewares/authMiddleware')
+
 
 //resgiter a user
 
@@ -21,11 +24,6 @@ router.post('/register', async (req, res) => {
         const salt = await bcrypt.genSalt(10)
         const hashedPassword = await bcrypt.hash(req.body.password , salt)
         req.body.password = hashedPassword
-
-
-
-
-
 
         const newUser = new User(req.body)
         await newUser.save()
@@ -58,11 +56,44 @@ router.post('/login' , async (req , res)=>{
             message : 'Invalid Password'
         })
     }
+
+
+    const token = jwt.sign({userId : user._id} , process.env.jwt_secret , {expiresIn :"1d"})
+
+    console.log(token)
+
+
    res.send({
         success : true,
-        message : 'User Logged in'
+        message : 'User Logged in',
+        data : token
     })
 })
+
+// Get user details by id (Protected Route)
+
+router.get('/get-current-user',authMiddleware, async (req , res)=>{
+    try {
+        const user = await User.findById(req.body.userId).select('-password')
+
+        res.send({
+            success : true,
+            message : 'User details fetched Successfully',
+            data : user
+        })
+    } catch (error) {
+        res.send({
+            success: false,
+            message: error.message,
+          });
+    }
+})
+
+
+
+
+
+
 
 
 

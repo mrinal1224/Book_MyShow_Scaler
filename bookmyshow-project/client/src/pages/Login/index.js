@@ -1,18 +1,37 @@
 import React from 'react'
-import {Form} from "antd";
+import {Form, message} from "antd";
 import Button from "../../components/Button";
-import { Link } from "react-router-dom";
-
+import { Link , useNavigate } from "react-router-dom";
+import { LoginUser } from '../../apicalls/users';
 
 
 
 const Login = () => {
+   const navigate = useNavigate()
+
+  const onFinish = async(values) =>{
+     try {
+      const response = await LoginUser(values)
+
+      if(response.success){
+        message.success(response.message)
+        localStorage.setItem('token' , response.data)
+        navigate('/')
+       }
+      else{
+        message.error(response.message)
+      }
+     } catch (error) {
+      message.error(error.message)
+     }
+  }
+
   return (
     <div className="flex justify-center h-screen items-center bg-primary">
     <div className="card p-3 w-400">
       <h1 className="text-xl mb-1">Welcome Again! Please Login</h1>
       <hr />
-      <Form layout="vertical" className="mt-1">
+      <Form layout="vertical" className="mt-1" onFinish={onFinish}>
         <Form.Item
           label="Email"
           name="email"

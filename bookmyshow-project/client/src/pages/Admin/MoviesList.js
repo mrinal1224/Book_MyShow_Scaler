@@ -106,11 +106,11 @@ function MoviesList() {
             ></i>
             <i
               className="ri-pencil-line"
-              // onClick={() => {
-              //   setSelectedMovie(record);
-              //   setFormType("edit");
-              //   setShowMovieFormModal(true);
-              // }}
+              onClick={() => {
+                setSelectedMovie(record);
+                setFormType("edit");
+                setShowMovieFormModal(true);
+              }}
             ></i>
           </div>
         );

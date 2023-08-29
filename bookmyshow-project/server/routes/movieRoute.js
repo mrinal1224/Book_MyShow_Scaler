@@ -1,5 +1,7 @@
 const router = require('express').Router()
+const authMiddleware = require('../middlewares/authMiddleware')
 const Movie = require('../models/movieModel')
+
 
 
 // Add a new Movie
@@ -35,6 +37,22 @@ router.get("/get-all-movies", async (req, res) => {
       });
     }
   })
+
+  // update a movie
+router.post("/update-movie", authMiddleware, async (req, res) => {
+    try {
+      await Movie.findByIdAndUpdate(req.body.movieId, req.body);
+      res.send({
+        success: true,
+        message: "Movie updated successfully",
+      });
+    } catch (error) {
+      res.send({
+        success: false,
+        message: error.message,
+      });
+    }
+  });
 
 
 

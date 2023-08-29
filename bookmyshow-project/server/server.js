@@ -11,7 +11,7 @@ const movieRoute = require('./routes/movieRoute')
 
 app.use(express.json())
 app.use('/api/users' , userRoute)
-app.use('/api/users' , movieRoute)
+app.use('/api/movies' , movieRoute)
 
 
 

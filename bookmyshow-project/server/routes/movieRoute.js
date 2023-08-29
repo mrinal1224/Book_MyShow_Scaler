@@ -20,6 +20,25 @@ router.post('/add-movie' , async (req , res)=>{
     }
 })
 
+router.get("/get-all-movies", async (req, res) => {
+    try {
+      const movies = await Movie.find()
+      res.send({
+        success: true,
+        message: "Movies fetched successfully",
+        data: movies,
+      });
+    } catch (error) {
+      res.send({
+        success: false,
+        message: error.message,
+      });
+    }
+  })
+
+
+
+
 module.exports = router;
 
 

@@ -64,3 +64,38 @@ export const AddTheatre = async (payload) => {
       return error.response;
     }
   };
+
+
+  //add a show
+
+  export const AddShow = async (payload) => {
+    try {
+      const response = await axiosInstance.post(
+        "/api/theatres/add-show",
+        payload
+      );
+      return response.data;
+    } catch (error) {
+      return error.response;
+    }
+  };
+
+ // get shows by theatre
+  export const GetAllShowsByTheatre = async (payload) => {
+    try {
+      const response = await axiosInstance.post(
+        "/api/theatres/get-all-shows-by-theatre",
+        payload
+      );
+      return response.data;
+    } catch (error) {
+      return error.response;
+    }
+  };
+
+
+
+
+
+
+

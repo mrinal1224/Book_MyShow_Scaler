@@ -14,6 +14,12 @@ const TheatresForMovie = () => {
 
     const [movie, setMovie] = useState([]);
 
+    const [date, setDate] = React.useState (moment().format("YYYY-MM-DD")
+      );
+
+
+      const navigate = useNavigate()
+
 
     const params = useParams()
     const dispatch = useDispatch()
@@ -60,12 +66,12 @@ const TheatresForMovie = () => {
                             <h1 className="text-md">Select Date</h1>
                             <input
                                 type="date"
-                                // min={moment().format("YYYY-MM-DD")}
-                                // value={date}
-                                // onChange={(e) => {
-                                //     setDate(e.target.value);
-                                //     navigate(`/movie/${params.id}?date=${e.target.value}`);
-                                // }}
+                                min={moment().format("YYYY-MM-DD")}
+                                value={date}
+                                onChange={(e) => {
+                                    setDate(e.target.value);
+                                    navigate(`/movie/${params.id}?date=${e.target.value}`);
+                                }}
                             />
                         </div>
                         </div>

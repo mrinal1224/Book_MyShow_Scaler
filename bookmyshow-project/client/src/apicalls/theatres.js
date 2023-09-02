@@ -94,6 +94,23 @@ export const AddTheatre = async (payload) => {
   };
 
 
+  // delete movies
+
+  export const DeleteShow = async (payload) => {
+    try {
+      const response = await axiosInstance.post(
+        "/api/theatres/delete-show",
+        payload
+      );
+      return response.data;
+    } catch (error) {
+      return error.response;
+    }
+  };
+
+
+
+
 
 
 

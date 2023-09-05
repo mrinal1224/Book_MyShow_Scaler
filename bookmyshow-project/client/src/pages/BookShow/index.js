@@ -37,7 +37,7 @@ function BookShow() {
 
   const getSeats = () => {
     const columns = 12;
-    const totalSeats = 120; // 120
+    const totalSeats = show.totalSeats; // 120
     const rows = Math.ceil(totalSeats / columns); // 10
 
     return (
@@ -52,9 +52,6 @@ function BookShow() {
               {Array.from(Array(columns).keys()).map((column, index) => {
                 const seatNumber = seat * columns + column + 1;
                 let seatClass = "seat";
-
-                // seat = 0 // coloumns = 0
-                //0 + 1 + 1 = 2
 
                 if (selectedSeats.includes(seat * columns + column + 1)) {
                   seatClass = seatClass + " selected-seat";

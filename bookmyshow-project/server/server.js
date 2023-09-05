@@ -11,11 +11,14 @@ const movieRoute = require('./routes/movieRoute')
 const theatreRoute = require('./routes/theatreRoute')
 const upcomingRoute = require('./routes/upcomingRoute')
 
+const bookingroute = require('./routes/bookingRoute')
+
 app.use(express.json())
 app.use('/api/users' , userRoute)
 app.use('/api/movies' , movieRoute)
 app.use('/api/theatres' , theatreRoute)
 app.use("/api/upcoming", upcomingRoute);
+app.use("/api/bookings", bookingroute);
 
 
 

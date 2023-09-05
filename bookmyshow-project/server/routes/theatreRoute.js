@@ -195,6 +195,28 @@ router.post("/get-all-theatres-by-movie", authMiddleware, async (req, res) => {
 });
 
 
+// get show by id
+router.post("/get-show-by-id", authMiddleware, async (req, res) => {
+  try {
+    const show = await Show.findById(req.body.showId)
+      .populate("movie")
+      .populate("theatre");
+    res.send({
+      success: true,
+      message: "Show fetched successfully",
+      data: show,
+    });
+  } catch (error) {
+    res.send({
+      success: false,
+      message: error.message,
+    });
+  }
+});
+
+
+
+
 
 
 

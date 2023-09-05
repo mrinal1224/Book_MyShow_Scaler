@@ -18,6 +18,9 @@
   .justify-between {
     justify-content: space-between;
   }
+  .m-4{
+    margin-left : 21rem
+  }
   
   .justify-end {
     justify-content: end;

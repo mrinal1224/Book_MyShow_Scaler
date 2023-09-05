@@ -18,7 +18,7 @@ function Admin() {
         <Tabs.TabPane tab="Theatres" key="2">
             <TheatresList/>
         </Tabs.TabPane>
-        <Tabs.TabPane tab="Theatres" key="3">
+        <Tabs.TabPane tab="Upcoming Movies" key="3">
             <UpcomingList/>
         </Tabs.TabPane>
       </Tabs>

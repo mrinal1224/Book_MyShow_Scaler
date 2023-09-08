@@ -2,6 +2,10 @@ const express= require('express')
 var cors = require('cors');
 
 
+const path = require("path");
+__dirname = path.resolve();
+
+
 const app = express()
 app.use(cors());
 require('dotenv').config()
@@ -19,6 +23,15 @@ app.use('/api/movies' , movieRoute)
 app.use('/api/theatres' , theatreRoute)
 app.use("/api/upcoming", upcomingRoute);
 app.use("/api/bookings", bookingroute);
+
+
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "/client/build")));
+    app.get("*", (req, res) => {
+      res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+    });
+  }
+  
 
 
 
